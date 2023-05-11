@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{ first_name }} Training Data</title>
+	<style>
+
+    	@media (max-width: 800px) {
+          /* CSS that should be displayed if width is equal to or less than 800px goes here */
+
+        }
+
+        @media only screen and (max-device-width: 480px) {
+            table {
+			border-collapse: collapse;
+			table-layout: fixed;
+			width: 98%;
+            font-size:21px
+		    }
+
+            body {
+            font-size:18px;
+            width: 99%;
+            font-family:system-ui;
+            }
+
+            #person_week_in_training_td {
+                height:100px;
+                width:80%;
+    			/*border-right: 8px solid black;*/
+	            font-size:50px;
+	            background-color:black;
+	            color:white;
+            }
+
+            #collapsable_week_description_toggle_td{
+                background-color: grey;
+            }
+
+            #collapsable_week_description_td{
+                background-color: green;
+            }
+
+            .center {
+              border: 8px solid;
+              margin: auto;
+              /*width: 50%;*/
+            }
+
+            p{
+                font-size:30px;
+            }
+
+            .training_unordered_list{
+                font-size:40px;
+            }
+
+            .div_training_list{
+                width: 98%;
+                margin:auto;
+            }
+
+            #page-footer {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-color: black;
+                color: white;
+                text-align: center;
+                padding: 10px;
+                width:99%;
+                height:50px;
+            }
+
+            #collapsible_week_description {
+              display: none;
+            }
+
+        }
+
+
+
+		.week-column {
+			width: 80px;
+		}
+
+		.dates-column {
+			width: 120px;
+		}
+
+		/*td, th {*/
+		/*	padding: 10px;*/
+		/*	text-align: left;*/
+		/*	white-space: nowrap;*/
+		/*	overflow: hidden;*/
+		/*	text-overflow: ellipsis;*/
+		/*}*/
+
+		li {
+		    margin:15px;
+		}
+
+	</style>
+</head>
+<body>
+	<!--<h1>Pozdrav, {{ first_name }}</h1>-->
+        <table style="margin-top: 40px" class="center">
+        	<tbody>
+        	{% for key, value in training_data.items() %}
+    			<tr>
+    				<td id="person_week_in_training_td">{{ value[2][0] }}</td>
+    				<td style="text-align: center; vertical-align: middle; font-size:40px; font-weight:lighter">{{ value[2][1] }}</td>
+    			</tr>
+    			 <tr>
+        	        <td id="collapsable_week_description_toggle_td">WORK IN PROGRESS (SHOW WEEK DESCRIPTION ON CLICK)</td>
+        	        <td style="background-color: gray; text-align:center">--</td>
+    	        </tr>
+                <tr id="collapsible_week_description" class="collapsible">
+                      <td id="collapsable_week_description_td">WORK IN PROGRESS (WEEK DESCRIPTION WILL BE HERE)<br><br><br><br>sasasasa<br><br></td>
+                      <td style="background-color: green"></td>
+                </tr>
+    		</tbody>
+	    </table>
+	    <div class="div_training_list">
+    		<ul class="training_unordered_list">
+    			{% for plan in value[2][2] %}
+    			<li>
+    			    <!--Autoescape je dodan kako bi mogli koristiti br za line break da razlomimo tekst trenina koji šaljemo-->
+    			    {% autoescape false %}
+                    {{plan}}
+                    {% endautoescape %}
+                </li>
+    			{% endfor %}
+    		</ul>
+	    </div>
+		    {% endfor %}
+    <div id="page-footer">v0.0.3.1</div>
+    <script src="{{ script }}"></script>
+</body>
+</html>
