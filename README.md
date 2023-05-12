@@ -1,5 +1,5 @@
 # PaceJam
-Go to the root of project, open Powershell and run:
+Go to the root of project, open CMD and run:
 
 set FLASK_APP=market.py
 
