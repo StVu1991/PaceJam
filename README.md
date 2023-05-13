@@ -16,3 +16,7 @@ flask run
 Nakon pokretanja lokalnog servera root stranice se otvara u browseru: 
 
 http://127.0.0.1:5000/
+
+Ako želimo da se stranica refresha on-the-fly kako mijenjamo kod, prije flask run postaviti:
+
+$env:FLASK_DEBUG = "1"
