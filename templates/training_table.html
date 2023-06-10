@@ -13,7 +13,7 @@
             table {
 			border-collapse: collapse;
 			table-layout: fixed;
-			width: 98%;
+			width: 100%;
             font-size:21px
 		    }
 
@@ -24,16 +24,18 @@
             }
 
             #person_week_in_training_td {
-                height:100px;
+                height:140px;
                 width:80%;
     			/*border-right: 8px solid black;*/
 	            font-size:50px;
-	            background-color:black;
-	            color:white;
+	            background-color:blueviolet;
+	            color:black;
+	            font-weight:700;
             }
 
             #collapsable_week_description_toggle_td{
                 background-color: grey;
+                height: 50px;
             }
 
             #collapsable_week_description_td{
@@ -41,7 +43,7 @@
             }
 
             .center {
-              border: 8px solid;
+              border: 8px solid blueviolet;
               margin: auto;
               /*width: 50%;*/
             }
@@ -51,7 +53,7 @@
             }
 
             .training_unordered_list{
-                font-size:40px;
+                font-size:30px;
             }
 
             .div_training_list{
@@ -88,53 +90,70 @@
 			width: 120px;
 		}
 
-		/*td, th {*/
-		/*	padding: 10px;*/
-		/*	text-align: left;*/
-		/*	white-space: nowrap;*/
-		/*	overflow: hidden;*/
-		/*	text-overflow: ellipsis;*/
-		/*}*/
+		#header {
+		    height:100px;
+		    width:100%;
+		    background-color:black;
+		}
 
 		li {
 		    margin:15px;
+		}
+
+		#collapsable-pace-calculations{
+		    height: 400px;
+		    color: white;
+		    background-color: black;
+		    display:none;
+		    font-size: 50px;
 		}
 
 	</style>
 </head>
 <body>
 	<!--<h1>Pozdrav, {{ first_name }}</h1>-->
-        <table style="margin-top: 40px" class="center">
-        	<tbody>
-        	{% for key, value in training_data.items() %}
-    			<tr>
-    				<td id="person_week_in_training_td">{{ value[2][0] }}</td>
-    				<td style="text-align: center; vertical-align: middle; font-size:40px; font-weight:lighter">{{ value[2][1] }}</td>
-    			</tr>
-    			 <tr>
-        	        <td id="collapsable_week_description_toggle_td">WORK IN PROGRESS (SHOW WEEK DESCRIPTION ON CLICK)</td>
-        	        <td style="background-color: gray; text-align:center">--</td>
-    	        </tr>
-                <tr id="collapsible_week_description" class="collapsible">
-                      <td id="collapsable_week_description_td">WORK IN PROGRESS (WEEK DESCRIPTION WILL BE HERE)<br><br><br><br>sasasasa<br><br></td>
-                      <td style="background-color: green"></td>
-                </tr>
-    		</tbody>
-	    </table>
-	    <div class="div_training_list">
-    		<ul class="training_unordered_list">
-    			{% for plan in value[2][2] %}
-    			<li>
-    			    <!--Autoescape je dodan kako bi mogli koristiti br za line break da razlomimo tekst trenina koji šaljemo-->
-    			    {% autoescape false %}
-                    {{plan}}
-                    {% endautoescape %}
-                </li>
-    			{% endfor %}
-    		</ul>
+	    <div id="header">
+	        <img style="height:100%;float:right" src="https://icon-library.com/images/hamburger-icon-white/hamburger-icon-white-16.jpg" alt="W3Schools.com">
+	        <img id="calculator-icon" style="height:90%;float:right" src="https://flaticons.net/icon.php?slug_category=banking&slug_icon=calculator" alt="W3Schools.com">
 	    </div>
-		    {% endfor %}
-    <div id="page-footer">v0.0.3.1</div>
+	    <div id="collapsable-pace-calculations">
+	        Odaberi tempo utrke: 6:30<br><br>
+	        5km: 32:30<br>
+	        10km: 1:05:00<br>
+	    </div>
+	    <div id="page-content">
+            <table style="margin-top: 1px" class="center">
+            	<tbody>
+            	{% for key, value in training_data.items() %}
+        			<tr>
+        				<td id="person_week_in_training_td">{{ value[2][0] }}</td>
+        				<td style="text-align: center; vertical-align: middle; font-size:40px; font-weight:lighter">{{ value[2][1] }}</td>
+        			</tr>
+        			 <tr>
+            	        <td id="collapsable_week_description_toggle_td">Klikni za tjedne detalje</td>
+            	        <td style="background-color: gray; text-align:center;border-left: 4px solid gray;">--</td>
+        	        </tr>
+                    <tr id="collapsible_week_description">
+                          <td id="collapsable_week_description_td">{{ value[2][3] }}</td>
+                          <td style="background-color: green"></td>
+                    </tr>
+        		</tbody>
+    	    </table>
+    	    <div class="div_training_list">
+        		<ul class="training_unordered_list">
+        			{% for plan in value[2][2] %}
+        			<li>
+        			    <!--Autoescape je dodan kako bi mogli koristiti br za line break da razlomimo tekst trenina koji šaljemo-->
+        			    {% autoescape false %}
+                        {{plan}}
+                        {% endautoescape %}
+                    </li>
+        			{% endfor %}
+        		</ul>
+    	    </div>
+    		    {% endfor %}
+        </div>
+        <div id="page-footer">v0.0.3.3</div>
     <script src="{{ script }}"></script>
 </body>
 </html>
